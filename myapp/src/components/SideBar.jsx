@@ -1,13 +1,20 @@
 import React from "react";
 import sideBarToggleBtn from "../assets/icons/sidebarToogle.svg";
 import style from "../style/Sidebar.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { closeSidebar } from "../redux/features/sidebar/sidebarSlice";
 
 function SideBar() {
+  const dispatch = useDispatch();
+  const isSidebarOpen = useSelector((state) => state.sidebar.sidebar);
+
   return (
-    <section className={style.sidebar}>
+    <section
+      className={`${style.sidebar} ${!isSidebarOpen ? style.hidden : ""}`}
+    >
       <div>
-        <h2>ConvertorAI</h2>
-        <button>
+        <h2>Platon</h2>
+        <button onClick={() => dispatch(closeSidebar())}>
           <img src={sideBarToggleBtn} alt="Sidebar Toggle Button" />
         </button>
       </div>
