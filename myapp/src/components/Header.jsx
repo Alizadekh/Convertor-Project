@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import lightMode from "../assets/icons/lightMode.svg";
 import darkMode from "../assets/icons/darkMode.svg";
-import newChatBtn from "../assets/icons/newChatBtn.png";
 import sideBarToggleBtn from "../assets/icons/sidebarToogle.svg";
-import style from "../style/Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { openSidebar } from "../redux/features/sidebar/sidebarSlice";
 import { darkModeHandle } from "../redux/features/theme/themeSlice";
@@ -14,19 +12,27 @@ function Header() {
   // console.log(darkModeOn);
 
   return (
-    <header className={style.header}>
-      <button onClick={() => dispatch(openSidebar())}>
-        <img src={sideBarToggleBtn} alt="Sidebar toggle" />
+    <header className="flex justify-between items-center bg-[#1f2529] px-4 py-2">
+      <button
+        className="bg-transparent border-0 cursor-pointer"
+        onClick={() => dispatch(openSidebar())}
+      >
+        <img
+          src={sideBarToggleBtn}
+          alt="Sidebar toggle"
+          className="w-6 h-6 rotate-180"
+        />
       </button>
-      <div>
-        <button>
-          <img src={newChatBtn} alt="New Chat Button" />
-          <span>New chat</span>
-        </button>
-        <button onClick={() => dispatch(darkModeHandle())}>
+
+      <div className="flex gap-3">
+        <button
+          className="flex justify-center items-center gap-2 bg-[#171717] p-3 rounded-full border-0 shadow-md cursor-pointer"
+          onClick={() => dispatch(darkModeHandle())}
+        >
           <img
             src={darkModeOn === "dark" ? darkMode : lightMode}
             alt="light-dark mode"
+            className="h-4 w-4"
           />
         </button>
       </div>
