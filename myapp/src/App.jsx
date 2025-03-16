@@ -1,16 +1,15 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Login from "./pages/Login";
-
 import Plans from "./pages/Plans";
 import ChatBox from "./pages/ChatBox";
+import SignupPage from "./pages/SignUp";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<ChatBox />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignupPage />} />
         <Route path="/plans" element={<Plans />} />
       </Routes>
     </>

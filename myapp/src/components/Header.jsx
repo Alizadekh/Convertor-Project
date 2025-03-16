@@ -37,7 +37,7 @@ function Header() {
             className="h-4 w-4"
           />
         </button>
-        <Link to="/login">
+        <Link to="/signup">
           <button className="flex justify-center items-center gap-2 bg-[#171717] p-3 rounded-full border-0 shadow-md cursor-pointer">
             <img src={User} alt="User icon" />
           </button>
