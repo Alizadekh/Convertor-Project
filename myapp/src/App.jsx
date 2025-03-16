@@ -1,17 +1,18 @@
-import { useSelector } from "react-redux";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header";
-import MainPage from "./components/MainPage";
-import SideBar from "./components/SideBar";
+import Login from "./pages/Login";
+
+import Plans from "./pages/Plans";
+import ChatBox from "./pages/ChatBox";
 
 function App() {
-  const isSidebarOpen = useSelector((state) => state.sidebar.sidebar);
-
   return (
     <>
-      <Header />
-      <SideBar />
-      <MainPage />
+      <Routes>
+        <Route path="/" element={<ChatBox />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/plans" element={<Plans />} />
+      </Routes>
     </>
   );
 }

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import lightMode from "../assets/icons/lightMode.svg";
 import darkMode from "../assets/icons/darkMode.svg";
+import User from "../assets/icons/userIcon.svg";
 import sideBarToggleBtn from "../assets/icons/sidebarToogle.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { openSidebar } from "../redux/features/sidebar/sidebarSlice";
 import { darkModeHandle } from "../redux/features/theme/themeSlice";
+import { Link } from "react-router-dom";
 
 function Header() {
   const dispatch = useDispatch();
@@ -26,7 +28,7 @@ function Header() {
 
       <div className="flex gap-3">
         <button
-          className="flex justify-center items-center gap-2 bg-[#171717] p-3 rounded-full border-0 shadow-md cursor-pointer"
+          className="flex justify-center items-center gap-2 bg-[#171717] p-4 rounded-full border-0 shadow-md cursor-pointer"
           onClick={() => dispatch(darkModeHandle())}
         >
           <img
@@ -35,6 +37,11 @@ function Header() {
             className="h-4 w-4"
           />
         </button>
+        <Link to="/login">
+          <button className="flex justify-center items-center gap-2 bg-[#171717] p-3 rounded-full border-0 shadow-md cursor-pointer">
+            <img src={User} alt="User icon" />
+          </button>
+        </Link>
       </div>
     </header>
   );
