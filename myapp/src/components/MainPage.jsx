@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Logo from "../assets/Logo.png";
+import Logo from "../assets/logo.png";
 import chatIcon from "../assets/icons/newChatBtn.png";
 import fileUploadBtn from "../assets/icons/fileUploadBtn.svg";
 import sendBtn from "../assets/icons/sendBtn.svg";

@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../assets/Logo.png";
+import Logo from "../assets/logo.png";
 
 function ChatMessage({ message }) {
   return (

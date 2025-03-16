@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Logo from "../assets/Logo.png";
+import Logo from "../assets/logo.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { signup, signupWithGoogle } from "../redux/features/auth/authSlice";
 import { ClipLoader } from "react-spinners";
