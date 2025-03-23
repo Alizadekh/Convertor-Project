@@ -11,7 +11,7 @@ function SideBar() {
 
   return (
     <section
-      className={`w-1/5 h-screen px-4 py-2 absolute top-0 left-0 flex flex-col bg-[#171717] font-inter rounded-r-xl transition-transform duration-300 ease-in-out transform ${
+      className={`w-4/5 sm:w-1/2 md:w-1/5 h-screen px-4 py-2 absolute top-0 left-0 flex flex-col bg-[#171717] font-inter rounded-r-xl transition-transform duration-300 ease-in-out transform ${
         !isSidebarOpen ? "translate-x-[-100%]" : "translate-x-0"
       }`}
     >
@@ -30,12 +30,6 @@ function SideBar() {
       </div>
       <div className="h-[88%] flex justify-center items-center">
         <p className="text-white text-base font-light">No chat history</p>
-        {/* <ul className="list-none flex flex-col">
-      <li className="text-white text-base font-light cursor-pointer transition-colors duration-400 p-2.5 rounded-lg hover:bg-[#1f2529]">First Message</li>
-      <li className="text-white text-base font-light cursor-pointer transition-colors duration-400 p-2.5 rounded-lg hover:bg-[#1f2529]">Second Message</li>
-      <li className="text-white text-base font-light cursor-pointer transition-colors duration-400 p-2.5 rounded-lg hover:bg-[#1f2529]">Thirth Message</li>
-      <li className="text-white text-base font-light cursor-pointer transition-colors duration-400 p-2.5 rounded-lg hover:bg-[#1f2529]">Fourth Message</li>
-    </ul> */}
       </div>
 
       {/* User Info */}

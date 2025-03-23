@@ -11,7 +11,6 @@ import {
 } from "../redux/features/chat/chatSlice";
 import ChatMessage from "../components/ChatMessage";
 
-// Bu memoized bileşen, mesaj içeriği değişmediği sürece tekrar render edilmeyecek
 const MemoizedChatMessage = memo(ChatMessage);
 
 function MainPage() {
@@ -22,7 +21,6 @@ function MainPage() {
   const [userInput, setUserInput] = useState("");
   const chatContainerRef = useRef(null);
 
-  // useCallback ile fonksiyonları memoize edelim
   const handleSendMessage = useCallback(() => {
     if (!userInput.trim()) return;
 
@@ -45,10 +43,8 @@ function MainPage() {
     [handleSendMessage]
   );
 
-  // Mesajlar değiştiğinde scroll işlemi
   useEffect(() => {
     if (chatContainerRef.current) {
-      // requestAnimationFrame ile daha smooth bir scroll sağlayalım
       requestAnimationFrame(() => {
         chatContainerRef.current.scrollTop =
           chatContainerRef.current.scrollHeight;
@@ -56,19 +52,16 @@ function MainPage() {
     }
   }, [messages]);
 
-  // Textarea değişim handler'ı
   const handleInputChange = useCallback((e) => {
     setUserInput(e.target.value);
   }, []);
 
-  // Reset chat handler'ı
   const handleResetChat = useCallback(() => {
     dispatch(resetChat());
   }, [dispatch]);
 
-  // Welcome ekranı içeriği - gereksiz yeniden render'ları önlemek için memorize edelim
   const welcomeScreen = (
-    <div className="w-full p-[30px] flex flex-col gap-10 items-center justify-center">
+    <div className="w-full h-full p-6 flex flex-col gap-10 items-center justify-center">
       <div>
         <img src={Logo} alt="" className="w-[312px]" />
         <h2 className="text-[#ECDFCC] font-inter text-[32px] not-italic font-medium text-center">
@@ -80,7 +73,7 @@ function MainPage() {
           What can I convert to you?
         </p>
       </div>
-      <div className="w-3/5 px-6 py-4 rounded-[20px] bg-[#212121]">
+      <div className="w-full px-6 py-4 rounded-[20px] bg-[#212121] md:w-3/5">
         <textarea
           className="w-full h-17 resize-none text-[#ECDFCC] bg-transparent outline-none"
           placeholder="Convert me something"
@@ -103,19 +96,18 @@ function MainPage() {
     </div>
   );
 
-  // Sınıf adları için değerler hesaplayalım ve saklayalım
   const sectionClassName = `flex-1 transition-all duration-300 ease-in-out flex flex-col ${
-    isSidebarOpen ? "ml-[20%] w-4/5" : "ml-0 w-full"
+    isSidebarOpen ? "sm:ml-[20%] sm:w-4/5 ml-0 w-full" : "ml-0 w-full"
   }`;
 
-  const bottomBarClassName = `fixed bottom-0 pb-4 pt-1 bg-[#1f2529] w-4/5 transition-all duration-300 ${
+  const bottomBarClassName = `fixed bottom-0 pb-4 pt-1 bg-[#1f2529] transition-all duration-300 w-full md:w-4/5 ${
     isSidebarOpen
-      ? "left-[calc(50%+10%)] -translate-x-1/2"
+      ? "sm:left-[calc(50%+10%)] sm:-translate-x-1/2 left-1/2 -translate-x-1/2"
       : "left-1/2 -translate-x-1/2"
   }`;
 
-  const messageInputWrapperClassName = `m-auto ${
-    isSidebarOpen ? "w-3/5 ml-[20%]" : "w-3/5"
+  const messageInputWrapperClassName = `w-full px-4 md:w-3/5 ${
+    isSidebarOpen ? "sm:ml-[20%]" : "m-auto"
   }`;
 
   return (
@@ -123,10 +115,10 @@ function MainPage() {
       {!isChatStarted ? (
         welcomeScreen
       ) : (
-        <div className="flex flex-col h-full w-3/5 m-auto">
+        <div className="flex flex-col h-full w-full">
           <div
             ref={chatContainerRef}
-            className="flex-grow overflow-y-auto p-6 pb-24 no-scrollbar"
+            className="flex-grow overflow-y-auto p-6 pb-24 no-scrollbar w-full md:w-3/5 md:m-auto"
             style={{ maxHeight: "calc(100vh - 160px)" }}
           >
             {messages.map((message) => (
@@ -145,7 +137,7 @@ function MainPage() {
               </button>
             </div>
             <div className={messageInputWrapperClassName}>
-              <div className="px-6 py-4 rounded-[20px] bg-[#212121] m-auto">
+              <div className="px-6 py-4 rounded-[20px] bg-[#212121]">
                 <textarea
                   className="w-full h-17 resize-none text-[#ECDFCC] bg-transparent outline-none"
                   placeholder="Type your message here..."
